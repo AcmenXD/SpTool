@@ -29,10 +29,16 @@ public final class SpManager {
         sContext = pContext;
     }
 
+    /**
+     * 设置全局Sp实例,项目启动时创建,并通过getCommonSp拿到,项目中只有一份实例
+     */
     public static void setCommonSp(String... spNames) {
         CommonSp = spNames;
     }
 
+    /**
+     * 设置加解密回调
+     */
     public static void setEncodeDecodeCallback(SpEncodeDecodeCallback pEncodeDecodeCallback){
         sEncodeDecodeCallback = pEncodeDecodeCallback;
     }
