@@ -29,5 +29,5 @@ dependencies {
      * 系统库
      */
     compile 'com.android.support:appcompat-v7:25.0.0'
-    compile project(':sptool')
+    compile 'com.github.AcmenXD:SpTool:1.0'
 }
