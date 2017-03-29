@@ -38,6 +38,7 @@ public final class SpManager {
 
     /**
      * 设置加解密回调
+     * * 不设置或null表示不进行加解密处理
      */
     public static void setEncodeDecodeCallback(SpEncodeDecodeCallback pEncodeDecodeCallback){
         sEncodeDecodeCallback = pEncodeDecodeCallback;
