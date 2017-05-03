@@ -5,7 +5,7 @@ android {
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.acmenxd.sptool.demo"
-        minSdkVersion 19
+        minSdkVersion 14
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -32,5 +32,6 @@ dependencies {
     /**
      * Android系统SharedPreferences进行的封装
      */
-    compile 'com.github.AcmenXD:SpTool:1.0'
+    //    compile 'com.github.AcmenXD:SpTool:1.0'
+    compile project(':sptool')
 }
