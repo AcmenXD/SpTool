@@ -16,7 +16,7 @@ Android系统SharedPreferences进行的封装
 	}
 ```
 ```
-	 compile 'com.github.AcmenXD:SpTool:1.0'
+	 compile 'com.github.AcmenXD:SpTool:1.1'
 ```
 ### 功能
 ---
