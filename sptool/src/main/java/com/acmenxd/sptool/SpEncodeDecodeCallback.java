@@ -1,5 +1,7 @@
 package com.acmenxd.sptool;
 
+import android.support.annotation.NonNull;
+
 /**
  * @author AcmenXD
  * @version v1.0
@@ -14,7 +16,7 @@ public interface SpEncodeDecodeCallback {
      * @param pStr 原始数据
      * @return 加密后数据
      */
-    String encode(String pStr);
+    String encode(@NonNull String pStr);
 
     /**
      * 解密
@@ -22,5 +24,5 @@ public interface SpEncodeDecodeCallback {
      * @param pStr 加密数据
      * @return 解密后数据
      */
-    String decode(String pStr);
+    String decode(@NonNull String pStr);
 }

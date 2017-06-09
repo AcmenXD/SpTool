@@ -1,6 +1,8 @@
 package com.acmenxd.sptool;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -25,14 +27,14 @@ public final class SpManager {
      * 初始化
      * context必须设置
      */
-    public static void setContext(Context pContext) {
+    public static void setContext(@NonNull Context pContext) {
         sContext = pContext;
     }
 
     /**
      * 设置全局Sp实例,项目启动时创建,并通过getCommonSp拿到,项目中只有一份实例
      */
-    public static void setCommonSp(String... spNames) {
+    public static void setCommonSp(@NonNull String... spNames) {
         CommonSp = spNames;
     }
 
@@ -40,7 +42,7 @@ public final class SpManager {
      * 设置加解密回调
      * * 不设置或null表示不进行加解密处理
      */
-    public static void setEncodeDecodeCallback(SpEncodeDecodeCallback pEncodeDecodeCallback){
+    public static void setEncodeDecodeCallback(SpEncodeDecodeCallback pEncodeDecodeCallback) {
         sEncodeDecodeCallback = pEncodeDecodeCallback;
     }
 
@@ -63,14 +65,14 @@ public final class SpManager {
      * * 如做全局字段变更监听,使用此函数获取实例
      * * 否则请使用函数getSp()获取新实例,防止因监听造成内存溢出
      */
-    public static SpTool getCommonSp(String pName) {
+    public static SpTool getCommonSp(@NonNull String pName) {
         return spMap.get(pName);
     }
 
     /**
      * 根据名称获取Sp实例
      */
-    public static SpTool getSp(String pName) {
+    public static SpTool getSp(@NonNull String pName) {
         return new SpTool(sContext, pName);
     }
 

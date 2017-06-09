@@ -1,5 +1,7 @@
 package com.acmenxd.sptool;
 
+import android.support.annotation.NonNull;
+
 /**
  * @author AcmenXD
  * @version v1.0
@@ -14,5 +16,5 @@ public interface SpChangeListener {
      *
      * @param pKey
      */
-    void onChanged(String pKey);
+    void onChanged(@NonNull String pKey);
 }

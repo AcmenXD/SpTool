@@ -3,6 +3,7 @@ package com.acmenxd.sptool;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 import java.util.ArrayList;
@@ -43,7 +44,7 @@ public final class SpTool {
     private List<SpChangeListener> mListeners;
     private SharedPreferences.OnSharedPreferenceChangeListener mChangeListener;
 
-    protected SpTool(Context pContext, String pName) {
+    protected SpTool(@NonNull Context pContext, @NonNull String pName) {
         mContext = pContext;
         mName = pName;
         mSp = mContext.getSharedPreferences(mName, mContext.MODE_PRIVATE);
@@ -52,7 +53,7 @@ public final class SpTool {
     /**
      * 注册监听 -> 允许多个监听同时存在
      */
-    public SpChangeListener registerOnChangeListener(SpChangeListener pListener) {
+    public SpChangeListener registerOnChangeListener(@NonNull SpChangeListener pListener) {
         if (pListener == null) {
             return null;
         }
@@ -85,7 +86,7 @@ public final class SpTool {
      * 注销监听
      * * 注意:无用的Listener一定要及时销毁,否则可能会引发异常
      */
-    public void unregisterOnChangeListener(SpChangeListener pListener) {
+    public void unregisterOnChangeListener(@NonNull SpChangeListener pListener) {
         if (pListener == null) {
             return;
         }
@@ -137,7 +138,7 @@ public final class SpTool {
      * @param pKey
      * @return
      */
-    public boolean contains(String pKey) {
+    public boolean contains(@NonNull String pKey) {
         return mSp.contains(encode(pKey));
     }
 
@@ -155,7 +156,7 @@ public final class SpTool {
      *
      * @return 返回是否成功结果
      */
-    public boolean remove(String pKey) {
+    public boolean remove(@NonNull String pKey) {
         return mSp.edit().remove(encode(pKey)).commit();
     }
 
@@ -164,27 +165,27 @@ public final class SpTool {
      *
      * @return 返回是否成功结果
      */
-    public boolean putInt(String pKey, int pValue) {
+    public boolean putInt(@NonNull String pKey, int pValue) {
         return putObject(pKey, pValue, TYPE_INT);
     }
 
-    public boolean putLong(String pKey, long pValue) {
+    public boolean putLong(@NonNull String pKey, long pValue) {
         return putObject(pKey, pValue, TYPE_LONG);
     }
 
-    public boolean putFloat(String pKey, float pValue) {
+    public boolean putFloat(@NonNull String pKey, float pValue) {
         return putObject(pKey, pValue, TYPE_FLOAT);
     }
 
-    public boolean putBoolean(String pKey, boolean pValue) {
+    public boolean putBoolean(@NonNull String pKey, boolean pValue) {
         return putObject(pKey, pValue, TYPE_BOOLEAN);
     }
 
-    public boolean putString(String pKey, String pValue) {
+    public boolean putString(@NonNull String pKey, @NonNull String pValue) {
         return putObject(pKey, pValue, TYPE_STRING);
     }
 
-    public boolean putStringSet(String pKey, Set<String> pValue) {
+    public boolean putStringSet(@NonNull String pKey, @NonNull Set<String> pValue) {
         return putObject(pKey, pValue, TYPE_SETSTRING);
     }
     //-------------------------------------------- put end
@@ -194,7 +195,7 @@ public final class SpTool {
      *
      * @return 读取值
      */
-    public int getInt(String pKey, int pDefaultValue) {
+    public int getInt(@NonNull String pKey, int pDefaultValue) {
         Object obj = getObject(pKey, TYPE_INT);
         if (obj != null) {
             return Integer.parseInt(String.valueOf(obj));
@@ -203,7 +204,7 @@ public final class SpTool {
         }
     }
 
-    public long getLong(String pKey, long pDefaultValue) {
+    public long getLong(@NonNull String pKey, long pDefaultValue) {
         Object obj = getObject(pKey, TYPE_LONG);
         if (obj != null) {
             return Long.parseLong(String.valueOf(obj));
@@ -212,7 +213,7 @@ public final class SpTool {
         }
     }
 
-    public float getFloat(String pKey, float pDefaultValue) {
+    public float getFloat(@NonNull String pKey, float pDefaultValue) {
         Object obj = getObject(pKey, TYPE_FLOAT);
         if (obj != null) {
             return Float.parseFloat(String.valueOf(obj));
@@ -221,7 +222,7 @@ public final class SpTool {
         }
     }
 
-    public boolean getBoolean(String pKey, boolean pDefaultValue) {
+    public boolean getBoolean(@NonNull String pKey, boolean pDefaultValue) {
         Object obj = getObject(pKey, TYPE_BOOLEAN);
         if (obj != null) {
             return Boolean.parseBoolean(String.valueOf(obj));
@@ -230,7 +231,7 @@ public final class SpTool {
         }
     }
 
-    public String getString(String pKey, String pDefaultValue) {
+    public String getString(@NonNull String pKey, @NonNull String pDefaultValue) {
         Object obj = getObject(pKey, TYPE_STRING);
         if (obj != null) {
             return String.valueOf(obj);
@@ -239,7 +240,7 @@ public final class SpTool {
         }
     }
 
-    public Set<String> getStringSet(String pKey, Set<String> pDefaultValue) {
+    public Set<String> getStringSet(@NonNull String pKey, @NonNull Set<String> pDefaultValue) {
         Object obj = getObject(pKey, TYPE_SETSTRING);
         if (obj != null) {
             return (Set<String>) obj;
@@ -288,21 +289,21 @@ public final class SpTool {
     /**
      * 注册监听
      */
-    private void registerOnSharedPreferenceChangeListener(SharedPreferences.OnSharedPreferenceChangeListener pOnSharedPreferenceChangeListener) {
+    private void registerOnSharedPreferenceChangeListener(@NonNull SharedPreferences.OnSharedPreferenceChangeListener pOnSharedPreferenceChangeListener) {
         mSp.registerOnSharedPreferenceChangeListener(pOnSharedPreferenceChangeListener);
     }
 
     /**
      * 注销监听
      */
-    private void unregisterOnSharedPreferenceChangeListener(SharedPreferences.OnSharedPreferenceChangeListener pOnSharedPreferenceChangeListener) {
+    private void unregisterOnSharedPreferenceChangeListener(@NonNull SharedPreferences.OnSharedPreferenceChangeListener pOnSharedPreferenceChangeListener) {
         mSp.unregisterOnSharedPreferenceChangeListener(pOnSharedPreferenceChangeListener);
     }
 
     /**
      * 加密
      */
-    private String encode(String pStr) {
+    private String encode(@NonNull String pStr) {
         String str = null;
         if (SpManager.sEncodeDecodeCallback != null) {
             String result = SpManager.sEncodeDecodeCallback.encode(pStr);
@@ -316,7 +317,7 @@ public final class SpTool {
     /**
      * 解密
      */
-    private String decode(String pStr) {
+    private String decode(@NonNull String pStr) {
         String str = null;
         if (SpManager.sEncodeDecodeCallback != null) {
             String result = SpManager.sEncodeDecodeCallback.decode(pStr);
@@ -331,7 +332,7 @@ public final class SpTool {
      * * 加密处理
      * 存储到SharedPreferences
      */
-    private boolean putObject(String pKey, Object pValue, int type) {
+    private boolean putObject(@NonNull String pKey, @NonNull Object pValue, int type) {
         boolean result = false;
         switch (type) {
             case TYPE_INT:
@@ -365,7 +366,7 @@ public final class SpTool {
      * * 解密处理
      * 存储到SharedPreferences
      */
-    private Object getObject(String pKey, int type) {
+    private Object getObject(@NonNull String pKey, int type) {
         Object result = null;
         if (type != TYPE_SETSTRING) {
             String value = mSp.getString(encode(pKey), null);
@@ -401,7 +402,7 @@ public final class SpTool {
     /**
      * 解析Set<String>类型
      */
-    private Set<String> typeParseSet(Set<String> v) {
+    private Set<String> typeParseSet(@NonNull Set<String> v) {
         Set<String> result = new HashSet<>();
         Iterator<String> it = v.iterator();
         while (it.hasNext()) {
@@ -413,7 +414,7 @@ public final class SpTool {
     /**
      * 解析非Set<String>类型
      */
-    private String[] typeParse(Object value) {
+    private String[] typeParse(@NonNull Object value) {
         String result = null; // 解析结果
         String type = null; // 解析类型
         String v = decode(String.valueOf(value));
