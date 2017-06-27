@@ -308,7 +308,7 @@ public final class SpTool {
         if (SpManager.sEncodeDecodeCallback != null) {
             String result = SpManager.sEncodeDecodeCallback.encode(pStr);
             if (result != null) {
-                str = result;
+                str = result.trim();
             }
         }
         return str;
@@ -322,7 +322,7 @@ public final class SpTool {
         if (SpManager.sEncodeDecodeCallback != null) {
             String result = SpManager.sEncodeDecodeCallback.decode(pStr);
             if (result != null) {
-                str = result;
+                str = result.trim();
             }
         }
         return str;
