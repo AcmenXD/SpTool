@@ -16,11 +16,11 @@ Android系统SharedPreferences进行的封装
 	}
 ```
 ```
-	 compile 'com.github.AcmenXD:SpTool:1.3'
+	 compile 'com.github.AcmenXD:SpTool:1.4'
 ```
 ### 功能
 ---
-- 1.3版本优化加解密异常问题
+- 1.4版本优化加解密异常问题
 - 由SpManager统一管理,操作便捷
 - 读取简单,省去操作Editor和commit步骤
 - 支持数据变更的事件监听
