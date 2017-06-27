@@ -308,6 +308,7 @@ public final class SpTool {
         if (SpManager.sEncodeDecodeCallback != null) {
             String result = SpManager.sEncodeDecodeCallback.encode(pStr);
             if (result != null) {
+                // 去掉结尾无用字符
                 str = result.trim();
             }
         }
@@ -322,6 +323,7 @@ public final class SpTool {
         if (SpManager.sEncodeDecodeCallback != null) {
             String result = SpManager.sEncodeDecodeCallback.decode(pStr);
             if (result != null) {
+                // 去掉结尾无用字符
                 str = result.trim();
             }
         }
