@@ -46,12 +46,12 @@ public final class BaseApplication extends Application {
 
     @Override
     public void onCreate() {
+        super.onCreate();
         startTime = System.currentTimeMillis();
         /**
          * 配置SpTool
          */
-        SpManager.setContext(this);
-        SpManager.setCommonSp(spAll);
+        // 加解密回调 - 不设置或null表示不进行加解密处理
         SpManager.setEncodeDecodeCallback(new SpEncodeDecodeCallback() {
             @Override
             public String encode(String pStr) {
@@ -77,7 +77,10 @@ public final class BaseApplication extends Application {
                 return result;
             }
         });
-        SpManager.init();
+        // 设置全局Sp实例,项目启动时创建,并通过getCommonSp拿到,项目中只有一份实例
+        SpManager.CommonSp = spAll;
+        // * 必须设置,否则无法使用
+        SpManager.setContext(this);
         // 初始化完毕
         isInitFinish = true;
     }

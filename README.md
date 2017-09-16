@@ -16,7 +16,7 @@ Android系统SharedPreferences进行的封装
 	}
 ```
 ```
-	 compile 'com.github.AcmenXD:SpTool:1.4'
+	 compile 'com.github.AcmenXD:SpTool:2.0'
 ```
 ### 功能
 ---
@@ -29,15 +29,6 @@ Android系统SharedPreferences进行的封装
 ---
 **在Application中配置**
 ```java
-/**
- * 初始化
- * context必须设置
- */
-SpManager.setContext(this);
-/**
- * 设置全局Sp实例,项目启动时创建,并通过getCommonSp拿到,项目中只有一份实例
- */
-SpManager.setCommonSp(spAll);
 /**
  * 设置加解密回调
  * * 不设置或null表示不进行加解密处理
@@ -54,9 +45,14 @@ SpManager.setEncodeDecodeCallback(new SpEncodeDecodeCallback() {
     }
 });
 /**
- * 初始化 -> 配置完成后必须调用此函数生效
+ * 设置全局Sp实例,项目启动时创建,并通过getCommonSp拿到,项目中只有一份实例
  */
-SpManager.init();
+SpManager.CommonSp = spAll;
+/**
+ * 设置Context对象
+ * * 必须设置,否则无法使用
+ */
+SpManager.setContext(this);
 ```
 ### 使用 -> 以下代码 注释很详细、很重要很重要很重要!!!
 ---

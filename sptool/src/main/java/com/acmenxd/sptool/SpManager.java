@@ -15,41 +15,25 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public final class SpManager {
     /**
+     * 初始化配置
+     */
+    // 全局Sp实例,项目启动时创建,并通过getCommonSp拿到,项目中只有一份实例
+    public static String[] CommonSp;
+    // 加解密回调
+    protected static SpEncodeDecodeCallback sEncodeDecodeCallback;
+    // 上下文对象
+    private static Context sContext;
+    /**
      * 存储全局Sp实例
      */
     private static Map<String, SpTool> spMap = new ConcurrentHashMap<>();
 
-    private static Context sContext; // 上下文对象
-    private static String[] CommonSp; // 全局Sp实例
-    protected static SpEncodeDecodeCallback sEncodeDecodeCallback; // 加解密回调
-
     /**
-     * 初始化
-     * context必须设置
+     * 设置Context对象
+     * * 必须设置,否则无法使用
      */
     public static void setContext(@NonNull Context pContext) {
         sContext = pContext;
-    }
-
-    /**
-     * 设置全局Sp实例,项目启动时创建,并通过getCommonSp拿到,项目中只有一份实例
-     */
-    public static void setCommonSp(@NonNull String... spNames) {
-        CommonSp = spNames;
-    }
-
-    /**
-     * 设置加解密回调
-     * * 不设置或null表示不进行加解密处理
-     */
-    public static void setEncodeDecodeCallback(SpEncodeDecodeCallback pEncodeDecodeCallback) {
-        sEncodeDecodeCallback = pEncodeDecodeCallback;
-    }
-
-    /**
-     * 初始化 -> 配置完成后必须调用此函数生效
-     */
-    public static final synchronized void init() {
         String[] spAll = CommonSp;
         if (spAll == null || spAll.length <= 0) {
             return;
@@ -58,6 +42,14 @@ public final class SpManager {
             String name = spAll[i];
             spMap.put(name, new SpTool(sContext, name));
         }
+    }
+
+    /**
+     * 设置加解密回调
+     * * 不设置或null表示不进行加解密处理
+     */
+    public static void setEncodeDecodeCallback(SpEncodeDecodeCallback pEncodeDecodeCallback) {
+        sEncodeDecodeCallback = pEncodeDecodeCallback;
     }
 
     /**
